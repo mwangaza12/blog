@@ -12,7 +12,7 @@
                 @endif
                 <div class="p-6">
                     <a href="{{ route('posts.show', $post) }}" class="text-lg font-semibold text-blue-600">{{ $post->title }}</a>
-                    <p class="text-gray-600">{{ Str::limit($post->body, 100) }}</p>
+                    <p class="text-gray-600">{{ $post->body, 100 }}</p>
                     <p class="text-gray-500 text-sm mt-2">Posted by {{ $post->user->name }} on {{ $post->created_at->format('M d, Y') }}</p>
                     <div class="flex space-x-2 mt-4">
                         @if(auth()->check() && auth()->user()->id === $post->user_id)
