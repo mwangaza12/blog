@@ -11,5 +11,4 @@ class AuthServiceProvider extends ServiceProvider
         Post::class => PostPolicy::class,
     ];
 
-    // ...
 }

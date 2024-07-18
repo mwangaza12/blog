@@ -4,14 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
-use Illuminate\Support\Facades\Gate;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 
 class PostController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
+    use AuthorizesRequests;
     public function index()
     {
         $posts = Post::all();
@@ -63,14 +62,16 @@ class PostController extends Controller
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        if ($request->file('image')) {
+        if ($request->file('image')) 
+        {
             $imagePath = $request->file('image')->store('images', 'public');
             $post->update([
                 'title' => $request->title,
                 'body' => $request->body,
                 'image' => $imagePath,
             ]);
-        } else {
+        } else 
+        {
             $post->update($request->only(['title', 'body']));
         }
 
